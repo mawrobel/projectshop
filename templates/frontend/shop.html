@@ -1,0 +1,6 @@
+{% extends 'layout/dashboard.html' %}
+{% block body %}
+    {% for category in categories %}
+            <a >{{ category.name }}</a>
+    {% endfor %}
+{% endblock %}

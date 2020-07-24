@@ -1,0 +1,27 @@
+body{
+    background-color: Gainsboro;
+    margin: 0 !important;
+}
+
+#root{
+    margin: 0 !important;
+    background-color: Gainsboro;
+    margin:auto;
+    width:100%;
+    height: 3%;
+}
+#header{
+    background-color: #202020;
+}
+#contentcontainer , #headcontainer, #footercontainer{
+    margin-left: 15%;
+    margin-right: 15%;
+}
+#headcontainer{
+    color: white;
+    background-color: #202020;
+}
+#footer{
+    background-color: #202020;
+    color:white;
+}
