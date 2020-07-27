@@ -127,6 +127,7 @@ class ParentChild(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=50, default='')
+    slug = models.SlugField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     for_eighteen = models.BooleanField(default=False)
     description = models.TextField(max_length=512)
@@ -138,5 +139,12 @@ class Product(models.Model):
                                  choices=CONDITION_CHOICE,
                                  default='NEW')
 
+    objects = models.Manager()
+
     def __str__(self):
         return str(self.name)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)

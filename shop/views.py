@@ -14,7 +14,7 @@ class welcomepage(APIView):
     template_name = 'frontend/shop.html'
 
     def get(self, request):
-        children = ParentChild.objects.filter(id=1)
+        children = ParentChild.objects.filter(parent=1)
         context = {
             "categories": children,
         }
@@ -29,8 +29,11 @@ class Categorypage(APIView):
     def get(self, request, category_slug):
         parent = Category.objects.filter(slug=category_slug)
         subcat = ParentChild.objects.filter(parent=parent[0])
+        query = Product.objects.filter(category=parent[0])
         context = {
             "categories": subcat,
+            "products": query,
+            "parent": parent,
         }
         return Response(context)
 
@@ -40,7 +43,10 @@ class Productpage(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'frontend/product.html'
 
-    def get(self, request):
+    def get(self, request, product_name):
+        product = Product.objects.filter(slug=product_name)
         context = {
+            "product": product,
         }
         return Response(context)
+

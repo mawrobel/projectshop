@@ -1,13 +1,21 @@
 {% extends 'layout/dashboard.html' %}
 {% block body %}
-    <div id="aside">
-    Category
-        {% for category in categories %}
-            <br><a href="{% url 'ProjectShop:category'  category.child.slug %}">{{ category.child.name }}</a>
-        {% endfor %}
+    <div id="content">
+        <div id="aside">
+            <div id="aside-label">
+                Category
+            </div>
+            <div id="aside-content">
+            {% for category in categories %}
+                <a href="{% url 'ProjectShop:category'  category.child.slug %}">{{ category.child.name }}</a><br>
+            {% endfor %}
+            </div>
+        </div>
+        <a id="section">
+            {% for product in products %}
+                <a href="{% url 'ProjectShop:product'  product.slug %}">{{ product.name }}</a><br>
+            {% endfor %}
+        </a>
+        <div style="clear:both"></div>
     </div>
-    <div id="section">
-
-    </div>
-    <div style="clear: both"></div>
 {% endblock %}

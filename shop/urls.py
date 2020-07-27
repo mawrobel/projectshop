@@ -9,7 +9,7 @@ app_name = "ProjectShop"
 urlpatterns = [
     path("", views.welcomepage.as_view(), name='main'),
     path("<slug:category_slug>/", views.Categorypage.as_view(), name='category'),
-    path("Product/<slug:product_slug>/", views.Productpage.as_view(), name='product'),
+    path("Product/<slug:product_name>/", views.Productpage.as_view(), name='product'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 

@@ -26,8 +26,23 @@ body{
     color:white;
 }
 #aside{
-    float:left;
+    margin-left: 0%;
+    float: left;
+    width: 10%;
+    font-size: 18px;
 }
 #section{
-    float:left;
+    float: left;
+    width:90px;
+    font-size: 18px;
+}
+#content {
+    display: block;
+    min-height:20px;
+}
+#footercontainer a{
+    color:white;
+}
+#contentcontainer{
+    min-height: 400px;
 }
