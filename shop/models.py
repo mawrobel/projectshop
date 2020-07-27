@@ -71,7 +71,7 @@ class User(AbstractBaseUser):
 
     def get_name(self):
         """
-        Zwraca nazwę urzytkownika
+        get back name of user
 
         """
         return self.username
@@ -80,12 +80,12 @@ class User(AbstractBaseUser):
         return "{}".format(self.get_name())
 
     def has_perm(self, perm, obj=None):
-        "Czy użytkownik ma określone uprawnienia"
+        " is User Admin ?"
         # Simplest possible answer: Yes, always
         return True
 
     def has_module_perms(self, app_label):
-        "Czy użytkownik ma uprawnienia do wglądu aplikacji?"
+        "Is User can log in ?"
         # Simplest possible answer: Yes, always
         return True
 
@@ -100,7 +100,43 @@ class User(AbstractBaseUser):
 
 class Category(models.Model):
     name = models.CharField(max_length=40)
+    slug = models.SlugField(max_length=40, blank=True)
+    for_eighteen = models.BooleanField(default=False)
     objects = models.Manager()
 
     def __str__(self):
         return "{}".format(self.name)
+
+    def get_absolute_url(self):
+        return reverse('ProjectShop:category', kwargs={"category_slug": str(self.name)})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+
+class ParentChild(models.Model):
+    parent = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="parent")
+    child = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="child")
+    objects = models.Manager()
+
+    def __str__(self):
+        return str(self.parent.name) + "/" + str(self.child.name)
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=50, default='')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    for_eighteen = models.BooleanField(default=False)
+    description = models.TextField(max_length=512)
+    CONDITION_CHOICE = {
+        ('USED', 'used'),
+        ('NEW', 'new'),
+    }
+    condition = models.CharField(max_length=4,
+                                 choices=CONDITION_CHOICE,
+                                 default='NEW')
+
+    def __str__(self):
+        return str(self.name)

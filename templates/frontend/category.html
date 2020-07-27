@@ -1,7 +1,13 @@
 {% extends 'layout/dashboard.html' %}
 {% block body %}
+    <div id="aside">
     Category
-    {% for category in categories %}
+        {% for category in categories %}
             <br><a href="{% url 'ProjectShop:category'  category.child.slug %}">{{ category.child.name }}</a>
-    {% endfor %}
+        {% endfor %}
+    </div>
+    <div id="section">
+
+    </div>
+    <div style="clear: both"></div>
 {% endblock %}

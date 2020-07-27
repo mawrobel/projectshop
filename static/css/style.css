@@ -25,3 +25,9 @@ body{
     background-color: #202020;
     color:white;
 }
+#aside{
+    float:left;
+}
+#section{
+    float:left;
+}
