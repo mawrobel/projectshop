@@ -108,7 +108,9 @@ class Category(models.Model):
         return "{}".format(self.name)
 
     def get_absolute_url(self):
-        return reverse('ProjectShop:category', kwargs={"category_slug": str(self.name)})
+        return reverse('ProjectShop:category',
+                       args=[str(self.name)
+                             ])
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -140,6 +142,12 @@ class Product(models.Model):
                                  default='NEW')
 
     objects = models.Manager()
+
+    def get_absolute_url(self):
+        return reverse('ProjectShop:product',
+                       args=[self.category.slug,
+                             self.slug
+                             ])
 
     def __str__(self):
         return str(self.name)

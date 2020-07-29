@@ -3,19 +3,27 @@
     <div id="content">
         <div id="aside">
             <div id="aside-label">
-                Category
+               <a ><i class="arrow right"></i>{{ parent.name }}</a><br>
             </div>
             <div id="aside-content">
             {% for category in categories %}
-                <a href="{% url 'ProjectShop:category'  category.child.slug %}">{{ category.child.name }}</a><br>
+                <a style="padding-left:5px;" href="{{  category.child.get_absolute_url }}"><i class="arrow right"></i>{{ category.child.name }}</a><br>
             {% endfor %}
             </div>
         </div>
-        <a id="section">
+
+        <div id="section">
+            <div id="section-tools">
+            </div>
+            <div id="content-content">
             {% for product in products %}
-                <a href="{% url 'ProjectShop:product'  product.slug %}">{{ product.name }}</a><br>
+                <a href="{{  product.get_absolute_url }}">{{ product.name }}</a><br>
             {% endfor %}
-        </a>
+            </div>
+            <div style="paddding-left:40%">
+                {% include "pagination.html" with page=products %}
+            </div>
+        </div>
         <div style="clear:both"></div>
     </div>
 {% endblock %}

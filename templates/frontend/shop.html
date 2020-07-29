@@ -2,6 +2,6 @@
 {% block body %}
     Category
     {% for category in categories %}
-            <br><a href="{% url 'ProjectShop:category'  category.child.slug %}">{{ category.child.name }}</a>
+            <br><a href="{% url 'ProjectShop:category'  category.child.slug %}"><i class="arrow right"></i>{{ category.child.name }}</a>
     {% endfor %}
 {% endblock %}

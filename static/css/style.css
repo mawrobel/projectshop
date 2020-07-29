@@ -8,7 +8,6 @@ body{
     background-color: Gainsboro;
     margin:auto;
     width:100%;
-    height: 3%;
 }
 #header{
     background-color: #202020;
@@ -28,15 +27,18 @@ body{
 #aside{
     margin-left: 0%;
     float: left;
-    width: 10%;
     font-size: 18px;
+    height:100%;
 }
 #section{
+    padding-left:5px;
     float: left;
-    width:90px;
+    width:80%;
     font-size: 18px;
+    height:100%;
 }
 #content {
+
     display: block;
     min-height:20px;
 }
@@ -45,4 +47,16 @@ body{
 }
 #contentcontainer{
     min-height: 400px;
+}
+.arrow {
+  padding-left:5px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
