@@ -3,9 +3,14 @@
     <div id="content">
         <div id="aside">
             <div id="aside-label">
-               <a ><i class="arrow right"></i>{{ parent.name }}</a><br>
+              Category
             </div>
             <div id="aside-content">
+                {% if ancestor.pk == 1 %}
+                {% else %}
+                    <a href="{{  ancestor.parent.get_absolute_url }}"><i class="arrow right"></i>back to {{ parent.name }}</a><br>
+                {% endif %}
+
             {% for category in categories %}
                 <a style="padding-left:5px;" href="{{  category.child.get_absolute_url }}"><i class="arrow right"></i>{{ category.child.name }}</a><br>
             {% endfor %}
@@ -13,15 +18,16 @@
         </div>
 
         <div id="section">
-            <div id="section-tools">
+            <div id="section-head">
+                Products:
             </div>
-            <div id="content-content">
-            {% for product in products %}
-                <a href="{{  product.get_absolute_url }}">{{ product.name }}</a><br>
-            {% endfor %}
-            </div>
-            <div style="paddding-left:40%">
-                {% include "pagination.html" with page=products %}
+            <div id="section-content">
+
+                <div class="list" id="list"></div>
+                <div class="pagination" id="pagination"></div>
+                {% load static %}
+                <input type="hidden" id="product_list" name="variable" value="{{ products }}">
+                <script src="{% static 'js/product.js' %}"></script>
             </div>
         </div>
         <div style="clear:both"></div>

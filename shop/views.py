@@ -1,12 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
-from rest_framework import permissions
+from rest_framework import permissions, status
 from rest_framework.views import APIView
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import permission_classes, api_view
 from rest_framework.renderers import TemplateHTMLRenderer
-from .serializers import CategorySerializer
+from django.core import serializers
+
+import json
+from rest_framework.parsers import JSONParser
 from .models import Category, ParentChild, Product
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 @permission_classes((permissions.AllowAny,))
@@ -33,17 +38,10 @@ class Categorypage(APIView):
         ancestor = get_object_or_404(ParentChild, child=parent)
         subcat = ParentChild.objects.filter(parent=parent)
         query = Product.objects.filter(category=parent)
-        paginator = Paginator(query, 1)
-        page = request.GET.get('page')
-        try:
-            products = paginator.page(page)
-        except PageNotAnInteger:
-            products = paginator.page(1)
-        except EmptyPage:
-            products = paginator.page(paginator.num_pages)
+        product_list = serializers.serialize("json", query)
         context = {
             "categories": subcat,
-            "products": products,
+            "products": product_list,
             "parent": parent,
             "ancestor": ancestor
         }
@@ -57,6 +55,7 @@ class Productpage(APIView):
 
     def get(self, request, category_slug, product_slug):
         product = get_object_or_404(Product, slug=product_slug)
+
         context = {
             "product": product,
         }

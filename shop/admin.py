@@ -1,7 +1,23 @@
 from django.contrib import admin
-from .models import User,Category,ParentChild,Product
+from .models import User, Category, ParentChild, Product
 
-admin.site.register(User)
-admin.site.register(Category)
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+
+
+admin.site.register(Category, CategoryAdmin)
+
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug', 'price', 'stock',
+                    'available', 'created', 'updated']
+    list_filter = ['available', 'created', 'updated']
+    list_editable = ['price', 'stock', 'available']
+    prepopulated_fields = {'slug': ('name',)}
+
+
+admin.site.register(Product, ProductAdmin)
 admin.site.register(ParentChild)
-admin.site.register(Product)
+admin.site.register(User)
