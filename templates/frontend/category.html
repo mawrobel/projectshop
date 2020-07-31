@@ -23,15 +23,25 @@
 
         <div id="section">
             <div id="section-tools">
+                products:
             </div>
-            <div id="content-content">
-                     {% for product in products %}
-                        <a href="{{  product.get_absolute_url }}">{{ product.name }}</a><br>
+            {% if products %}
+                <div id="content-content">
+                    {% load static%}
+                    {% for product in products %}
+                        <a href="{{  product.get_absolute_url }}"><div class="product-item">
+                             <img style="float:left;" src="{%if product.image %}{{product.image}}{% else %}{% static "img/no_image.png"%}{% endif %}" width=40px height=40px>
+                            <p class="name"  style="float:left;margin-left:20px;">{{ product.name }}</p>
+                            <p class="available" style="float:left;margin-left:20px;">available: {{product.available}}</p>
+                            <p class="price" style="float:right;">${{product.price}}</p>
+                            <div style="clear:both"></div>
+                        </div></a>
                     {% endfor %}
-            </div>
-            <div style="paddding-left:40%">
-                {% include "pagination.html" with page=products %}
-            </div>
+                </div>
+                <div class="pagination"">
+                    {% include "pagination.html" with page=products %}
+                </div>
+            {% endif %}
         </div>
         <div style="clear:both"></div>
     </div>

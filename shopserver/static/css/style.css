@@ -12,10 +12,6 @@ body{
 #header{
     background-color: #202020;
 }
-#contentcontainer , #headcontainer, #footercontainer{
-    margin-left: 15%;
-    margin-right: 15%;
-}
 #headcontainer{
     color: white;
     background-color: #202020;
@@ -48,7 +44,7 @@ body{
     font-size: 18px;
     height:100%;
 }
-#section-head{
+#section-tools{
     display:flex;
     justify-content:center;
     align-items:center;
@@ -101,4 +97,21 @@ body{
 .right {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
+}
+.product-item{
+    width:100%;
+    min-height:20px;
+    border-top:5px solid black;
+    border-bottom:5px solid black;
+}
+.product-item:nth-child(2){
+    width:100%;
+    background-color:#505050;
+    min-height:20px;
+    border-top:none;
+    border-bottom:none;
+}
+.product-img .price .available{
+    float:left;
+    margin-left:10px;
 }
