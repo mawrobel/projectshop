@@ -37,7 +37,7 @@ class Categorypage(APIView):
         ancestor = get_object_or_404(ParentChild, child=parent)
         subcat = ParentChild.objects.filter(parent=parent)
         query = Product.objects.filter(category=parent)
-        paginator = Paginator(query, 5)
+        paginator = Paginator(query, 20)
         page = request.GET.get('page')
         try:
             products = paginator.page(page)

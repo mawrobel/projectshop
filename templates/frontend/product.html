@@ -5,10 +5,15 @@
 {% endblock %}
 {% block body %}
 <div class="product-detail">
-   <img src="{%if product.image %}{{product.image}}{% else %}{% static "img/no_image.png"%}{% endif %}">
-   <h1>{{ product.name }}</h1>
-   <h2><a href="{{product.category.get_absolute_url}}">{{product.category.name}}</a> </h2>
-   <p class="price">${{product.price}}</p>
-   {{product.description | linebreaks}}
+   <div id="product-img">
+   <img src="{%if product.image %}{{product.image}}{% else %}{% static "img/no_image.png"%}{% endif %}" width=200px height=200px>
+   </div>
+   <div id="product-content">
+   <h3>{{ product.name }}</h3>
+   <h4><a href="{{product.category.get_absolute_url}}">{{product.category.name}}</a> </h4>
+   <p class="price-product">${{product.price}}</p>
+   <p class="product-description" >{{product.description | linebreaks}}</p>
+   </div>
 </div>
+<div style="clear:both"></div>
 {% endblock %}

@@ -1,54 +1,62 @@
+html body {
+    display:absolute;
+    height: 100%;
+    margin: 0 ;
+}
 body{
     background-color: Gainsboro;
-    margin: 0 !important;
 }
 
 #root{
-    margin: 0 !important;
+    items-justify:center;
     background-color: Gainsboro;
-    margin:auto;
     width:100%;
+    min-height: 100%;
 }
 #header{
+    font-size: 30px;
     background-color: #202020;
 }
 #headcontainer{
     color: white;
     background-color: #202020;
 }
+
 #footer{
+    font-size: 30px;
+    color:white;
+    text-align:center;
     background-color: #202020;
     color:white;
+    position: relative;
+
 }
 #aside{
-
+    display:inline-block;
     margin-left: 0%;
     float: left;
-    font-size: 18px;
-    min-height:100%;
+    font-size: 30px;
+    height:100px;
+    position:relative;
     background-color:silver;
 }
 
 .cart{
+    font-size: 30px;
     text-align:right;
 }
 
 #section{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    content-justify:center;
-    padding-left:5px;
-    float: left;
-    width:80%;
-    font-size: 18px;
-    height:100%;
+    padding-left:10px;
+    font-size: 30px;
+    display:inline-block;
 }
 #section-tools{
     display:flex;
     justify-content:center;
     align-items:center;
-    height:60px;
+    width:100%;
+    height:80px;
     background-color:silver;
     //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
@@ -76,15 +84,18 @@ body{
 }
 
 #content {
-
+    items-justify:center;
     display: block;
-    min-height:20px;
+     height:100%;
 }
-#footercontainer a{
+#footercontainer{
+    text-align:center;
     color:white;
+    width:100%;
 }
 #contentcontainer{
-    min-height: 400px;
+    text-align:center;
+    height:100%;
 }
 .arrow {
   padding-left:5px;
@@ -100,18 +111,33 @@ body{
 }
 .product-item{
     width:100%;
-    min-height:20px;
+    min-height:90px;
     border-top:5px solid black;
     border-bottom:5px solid black;
 }
-.product-item:nth-child(2){
-    width:100%;
-    background-color:#505050;
-    min-height:20px;
-    border-top:none;
-    border-bottom:none;
+
+.product-item:hover{
+    background-color:#808080;
 }
-.product-img .price .available{
+.pagination{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.product-detail{
+    margin-left:10%;
+    margin-right:10%;
+
+    justify-content:center;
+    align-items:center;
+}
+#product-img{
+    float:left;
+    margin-right:10px;
+}
+#product-detail{
+    display:flex;
     float:left;
     margin-left:10px;
 }
