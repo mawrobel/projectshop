@@ -32,6 +32,11 @@ body{
     min-height:100%;
     background-color:silver;
 }
+
+.cart{
+    text-align:right;
+}
+
 #section{
     margin: 0;
     padding: 0;

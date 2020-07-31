@@ -12,4 +12,6 @@ urlpatterns = [
     path("<slug:category_slug>/<slug:product_slug>/", views.Productpage.as_view(), name='product'),
 ]
 urlpatterns += staticfiles_urlpatterns()
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
