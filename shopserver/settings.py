@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'shop',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,5 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer"
     )
 }
+
+CART_SESSION_ID = 'cart'

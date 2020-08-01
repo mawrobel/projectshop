@@ -8,7 +8,6 @@ body{
 }
 
 #root{
-    items-justify:center;
     background-color: Gainsboro;
     width:100%;
     min-height: 100%;
@@ -32,12 +31,10 @@ body{
 
 }
 #aside{
-    display:inline-block;
+    float:left;
     margin-left: 0%;
-    float: left;
     font-size: 30px;
-    height:100px;
-    position:relative;
+    height:max-content;
     background-color:silver;
 }
 
@@ -84,7 +81,7 @@ body{
 }
 
 #content {
-    items-justify:center;
+    clear:both;
     display: block;
      height:100%;
 }

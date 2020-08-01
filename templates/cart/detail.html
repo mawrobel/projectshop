@@ -1,0 +1,48 @@
+{% extends 'layout/dashboard.html' %}
+{% load static%}
+{% block title %}
+    your cart
+{% endblock %}
+{% block body %}
+ <h1>Your cart</h1>
+<table class="cart">
+    <thead>
+    <tr>
+        <th>image</th>
+        <th>product</th>
+        <th>quantity</th>
+        <th>delete</th>
+        <th>unit price</th>
+        <th>total price</th>
+    </tr>
+    </thead>
+    <tbody>
+        {%for item in cart%}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{% if product.image %}{{ product.name }}{% else %}
+                                    {% static "img/no_image.png" %}{% endif %}">
+                        </a>
+                    </td>
+                    <td>{{product.name}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td><a href="{% url 'cart:cart_remove' product.id %}">Delete</a></td>
+                <td class="num">{{ item.price }}</td>
+                <td class="num">{{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+    <tr class="total">
+        <td>Total price</td>
+        <td colspan="4"></td>
+        <td class="num">${{ cart.get_total_price }}</td>
+    </tr>
+    </tbody>
+</table>
+<p class="text-right">
+    <a href="{% url 'ProjectShop:main' %}" class="button-light">continue</a>
+    <a href="#" class="button">To cash</a>
+</p>
+{% endblock %}

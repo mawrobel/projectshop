@@ -4,14 +4,10 @@ from rest_framework import permissions, status
 from rest_framework.views import APIView
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.renderers import TemplateHTMLRenderer
-from django.core import serializers
-from .serializers import ProductSerializer
-import json
-from rest_framework.parsers import JSONParser
 from .models import Category, ParentChild, Product
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.csrf import csrf_exempt
-
+from cart.forms import CartAddProductForm
 
 @permission_classes((permissions.AllowAny,))
 class welcomepage(APIView):
@@ -61,8 +57,9 @@ class Productpage(APIView):
 
     def get(self, request, category_slug, product_slug):
         product = get_object_or_404(Product, slug=product_slug)
-
+        cart_form = CartAddProductForm()
         context = {
             "product": product,
+            "cart_form": cart_form,
         }
         return Response(context)
