@@ -1,0 +1,9 @@
+{% extends 'layout/dashboard.html' %}
+{% load static%}
+{% block title %}
+    order done
+{% endblock %}
+{% block body %}
+    <h1>Thank you!</h1>
+    <p>Your order was done. Your's order number is <strong>{{order.id}}</strong>.</p>
+{% endblock %}

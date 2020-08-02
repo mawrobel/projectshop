@@ -23,7 +23,16 @@
         <div id="contentcontainer">
             <div id="subheader">
             <div class="cart">
-                your cart is empty!
+                <a href="{% url 'cart:cart_detail' %}">
+                your cart:{% with total_items=cart|length%}
+                    {% if cart|length > 0%}
+                        {{ total_items }} product{{ total_items|pluralize:'s'}}
+                        ${{ cart.get_total_price }}
+                    {% else %}
+                         is empty!
+                    {% endif %}
+                {% endwith %}
+                </a>
             </div>
         </div>
             <div id="section">
