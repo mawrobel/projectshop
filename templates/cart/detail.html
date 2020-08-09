@@ -41,15 +41,21 @@
                 </tr>
             {% endwith %}
         {% endfor %}
+
     <tr class="total">
         <td>Total price</td>
         <td colspan="4"></td>
+
         <td class="num">${{ cart.get_total_price }}</td>
+
     </tr>
     </tbody>
 </table>
 <p class="text-right">
     <a href="{% url 'ProjectShop:main' %}" class="button-light">continue</a>
+    {% if cart.get_total_cost != 0 %}
     <a href="{% url 'orders:order_create' %}" class="button">To cash</a>
+    {% else %}
+    {% endif %}
 </p>
 {% endblock %}

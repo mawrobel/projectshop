@@ -1,5 +1,6 @@
 from django.conf import settings
 from shop.models import Product
+from decimal import Decimal
 
 
 class Cart(object):
@@ -34,18 +35,15 @@ class Cart(object):
         for product in products:
             self.cart[str(product.id)]['product'] = product
         for item in self.cart.values():
-            item['price'] = format(float(item['price']), '.2f')
-            item['total_price'] = format(float(item['price']) * item['quantity'], '.2f')
+            item['price'] = str(Decimal(item['price']))
+            item['total_price'] = item['price'] * item['quantity']
             yield item
 
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
 
     def get_total_price(self):
-        total = 0.0
-        for item in self.cart.values():
-            total += float(item['price']) * item['quantity']
-        return format(total,'.2f')
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
     def clear(self):
         del self.session[settings.CART_SESSION_ID]

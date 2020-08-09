@@ -136,21 +136,22 @@ class ParentChild(models.Model):
 
 
 class Product(models.Model):
-    CONDITION_CHOICE = {
-        ('USED', 'used'),
-        ('NEW', 'new'),
-    }
+
     name = models.CharField(max_length=50, db_index=True)
     slug = models.SlugField(blank=True, db_index=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-    for_eighteen = models.BooleanField(default=False)
     description = models.TextField(max_length=512, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     stock = models.PositiveIntegerField(default=1)
     available = models.BooleanField(default=True)
     created = models.DateTimeField( default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
+    for_eighteen = models.BooleanField(default=False)
+    CONDITION_CHOICE = {
+        ('USED', 'used'),
+        ('NEW', 'new'),
+    }
     condition = models.CharField(max_length=4,
                                  choices=CONDITION_CHOICE,
                                  default='NEW')
